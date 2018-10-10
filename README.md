@@ -1,2 +1,6 @@
+
 # awscertification
-Helper application while I go through the certification process. 
+
+Helper application while I go through the certification process.
+
+Changes to the applicaiton.
