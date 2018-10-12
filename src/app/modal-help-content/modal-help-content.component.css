@@ -1,0 +1,17 @@
+.reading-area {
+    height: 600px;
+    overflow: scroll;
+  }
+
+  .reading-current {
+    color: blue;
+    background-color: bisque;
+    font-size : 1.5em;
+  }
+
+  .modal-body {
+    max-width: 1000px;
+}
+  .modal-content {
+    max-width: 80%;
+}

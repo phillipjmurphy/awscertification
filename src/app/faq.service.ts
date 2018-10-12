@@ -12,7 +12,7 @@ export class FaqService {
   private markFile = 'https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_polly_test__Joanna.e5f2a85d-7717-4a00-81bf-6f786f4089bd.marks';
   constructor(private http: HttpClient) { }
 
-  getFaq(faqDomain){
+  getFaq(faqDomain) {
     // This is typescript template string at work. Note the back tic.
     const urlEndPoint = `${this.bucket}${faqDomain}.json`;
     console.log(urlEndPoint);
@@ -23,6 +23,7 @@ export class FaqService {
   }
   // https://medium.com/@deaniusaur/how-to-stream-json-data-over-rest-with-observables-80e0571821d3
   // https://github.com/jh3141/ndjson-rxjs/blob/master/index.js
+  // Notes on this, it was interesting the way things worked out.
   getMark(uri_marks) {
     console.log('getMark file');
     return stream(uri_marks).pipe(

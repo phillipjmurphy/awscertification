@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   another_variable = 'What is this and why ? ';
   playback_rate = 2;
 
-  faqs = [];
+  aws_content = [];
   faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs',
   'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar',
   'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
     //
     for ( const faq of this.faqList) {
       this.faq_service.getFaq(faq).subscribe(
-        faqRes => this.faqs.push(faqRes),
+        faqRes => this.aws_content.push(faqRes),
         error => this.errorMesage = <any>error
       );
 

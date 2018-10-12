@@ -1,127 +1,113 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">AWS Cert Help </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <a class="navbar-brand" href="#">
+    <img class="img-responsive img-rounded" src="https://a0.awsstatic.com/main/images/logos/aws_smile-header-mobile-en-white_48x29.png"
+      alt="aws">
+  </a>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+  <div class="collapse navbar-collapse " id="navbar-right">
+    <ul class="navbar-nav mr-auto ">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">Certification Help</a>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="#">FAQs</a>
-      </li>
-      <!--  I think this depends on js which we aren't using. Just the styles.
-        <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle"  id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Study Guides</a>
-          <a class="dropdown-item" href="#">More information</a>
-          <a class="dropdown-item" href="#">Etc....</a>
-        </div>
       </li> -->
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <span class="navbar-text">
+      Brought to you by <a href="https://aws.amazon.com/polly/" target="_blank">AWS Polly </a>
+    </span>
   </div>
 </nav>
-
 <main role="main">
-
   <!-- Main jumbotron for a primary marketing message or call to action -->
   <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-3">AWS Cert Help - SA Associate</h1>
-      <p>I put this page together to learn something about AWS polly and to study for my AWS SA Associate exam. </p>
+    <div class="container text-white text-center">
+      <h1 class="display-3 ">AWS Cert Help</h1>
+      <hr />
+      <p>Thanks for visiting. Here is some content that I used to help study for the AWS certification tests. </p>
+      <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=9&t=c&d=2018-08-16&ci=AWS00597500" target="_blank">
+        <img src="assets/aws_cp_badge.png" alt="">
+      </a>
+      <a href="https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-09-28&ci=AWS00597500" target="_blank">
+        <img src="assets/aws_sa_associate.png" alt="">
+      </a>
     </div>
+  </div>
+
+  <div class="container">
+    <div class="card-columns">
+      <div class="card" *ngFor="let content of aws_content; let i = index">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">{{content.name| uppercase}}</h4>
+        </div>
+        <div class="card-body">
+          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" >
+            <ngb-panel *ngFor="let section of content.sections" (click)="panelClicked($event)">
+                <app-modal-help-content [section]="section"></app-modal-help-content>
+               <ng-template ngbPanelTitle>
+
+                <span>{{section.name}}</span>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                  <app-modal-help-content [section]="section"></app-modal-help-content>
+
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+
+        </div>
+      </div>
+
+    </div>
+
   </div>
   <div class="container">
-    <div class="row">
-      <div class='col-12'>
-        <ngb-tabset>
-          <ngb-tab *ngFor="let faqDomain of faqs">
-            <ng-template ngbTabTitle>{{faqDomain.name}}<img class="img-responsive" src="assets/PNG, SVG, EPS/Compute/Compute_AmazonEC2.svg"
-                alt="faqDomain.name">
-            </ng-template>
-            <ng-template ngbTabContent>
-              <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" (panelChange)="beforeChange($event)">
-                <ngb-panel *ngFor="let faq of faqDomain.sections" (click)="panelClicked($event)">
-                  <ng-template ngbPanelTitle>
-                    <span> {{faqDomain.name}} : {{faq.name}}</span>
-                  </ng-template>
-                  <ng-template ngbPanelContent>
-                    <div class="row">
-                      <div class="col-3">
-                        <h2>Audio Controls</h2>
-                        <audio [src]="faq.uri_mp3" controls="true" [playbackRate]="playback_rate" [currentTime]='cur_time'
-                          [attr.data-marks]='faq.uri_marks' (play)='onplay($event)' (canplay)='oncanplay($event)'
-                          (timeupdate)="onTimeUpdate($event)"></audio>
-                      </div>
-                      <div class="col-9">
-                        <h2>Playback speed</h2>
-                        <input name="playback" type="range" min="0.1" max="4.0" step="0.10" [(ngModel)]="playback_rate">
-                        <label for="playback"> {{playback_rate}}</label>
-                      </div>
-                    </div>
-                    <!-- This is where we need to map the infromation -->
-                    <div class="reading-area">
-                      <p *ngFor="let sentence of marks_sentence" [id]="sentence.time" [class.reading-current]="sentence.time == currentSentenceTime">{{sentence.value}}</p>
-                    </div>
-                  </ng-template>
-                </ngb-panel>
-              </ngb-accordion>
-            </ng-template>
-          </ngb-tab>
-        </ngb-tabset>
+
+
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+
+          <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
+    </footer>
   </div>
+
+
+
 </main>
 
 <footer class="container">
   <p>&copy; www.awscerthelp.com 2017-2018</p>
 </footer>
-<!-- The content below is only a placeholder and can be replaced.
-<div style="text-align:center">
-  <h1>
-
-  Welcome to {{ title }} !
-  </h1>
-  <h2>
-    {{another_variable}}
-  </h2>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some MP3 audio files to get you started.</h2>
-
-<input type="number" step="0.01" [(ngModel)]="playback_rate">
-<h3>{{playback_rate}}</h3>
-
-<div class="form-group">
-  <label for="exampleFormControlSelect1">Example select</label>
-  <select class="form-control" id="exampleFormControlSelect1">
-    <option>1</option>
-    <option>1.5</option>
-    <option>1.75</option>
-    <option>2.0</option>
-    <option>3.0</option>
-  </select>
-</div>
-<ul class="list-group">
-  <li class="list-group-item">EC2 General<audio playbackRate="{{playback_rate}}" src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_General_Joanna.d267c6c5-480c-4fce-9e98-2711b65275ee.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_General_Joanna.d267c6c5-480c-4fce-9e98-2711b65275ee.mp3</audio></li>
-  <li class="list-group-item">Billing Section<audio playbackRate="{{playback_rate}}" src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_Billing_Joanna.35901398-08a5-47ef-8bcf-d587547c2217.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_Billing_Joanna.35901398-08a5-47ef-8bcf-d587547c2217.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_hardware-information_Joanna.7ac810bb-f713-45ce-b848-1bee120e884b.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_hardware-information_Joanna.7ac810bb-f713-45ce-b848-1bee120e884b.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_security_Joanna.a3173440-9524-4631-89ee-e329010002c9.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_security_Joanna.a3173440-9524-4631-89ee-e329010002c9.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_elastic-ip_Joanna.1a2b0419-c9ce-44b4-b607-4fe883c34fdf.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_elastic-ip_Joanna.1a2b0419-c9ce-44b4-b607-4fe883c34fdf.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_availability-zones_Joanna.2cb70847-6f2b-41f9-bb89-80594441e1da.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_availability-zones_Joanna.2cb70847-6f2b-41f9-bb89-80594441e1da.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_enhanced-networking_Joanna.cdf4c944-6ecb-4210-a5e6-539497b910db.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_enhanced-networking_Joanna.cdf4c944-6ecb-4210-a5e6-539497b910db.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_ebs_Joanna.04e6067c-a6a0-48b6-a16f-a83e2a9bcc2c.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_ebs_Joanna.04e6067c-a6a0-48b6-a16f-a83e2a9bcc2c.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_amazon-cloudwatch_Joanna.2a95ac5b-c292-4065-b0f6-c4379c51b7c3.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_amazon-cloudwatch_Joanna.2a95ac5b-c292-4065-b0f6-c4379c51b7c3.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_micro-instances_Joanna.f314b76d-4ac0-4549-badd-fda15c741e97.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_micro-instances_Joanna.f314b76d-4ac0-4549-badd-fda15c741e97.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_cluster-instances_Joanna.8eebf3bf-217e-4a9e-b971-924e6daf77d2.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_cluster-instances_Joanna.8eebf3bf-217e-4a9e-b971-924e6daf77d2.mp3</audio></li>
-  <li class="list-group-item"><audio src="https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_Burstable_Performance_Instances_Joanna.89419579-212e-47b2-986d-6112ea83bc23.mp3" controls>https://s3.us-east-1.amazonaws.com/murphpolly/aws_faq_ec2_Burstable_Performance_Instances_Joanna.89419579-212e-47b2-986d-6112ea83bc23.mp3</audio></li>
-</ul> -->
