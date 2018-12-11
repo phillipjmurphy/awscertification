@@ -14,13 +14,10 @@ export class AppComponent implements OnInit {
   playback_rate = 2;
 
   aws_content = [];
-  faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs',
+  faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs','dynamodb','lambda','api-gateway','elasticbeanstalk','kinesis','kms',
   'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar',
   'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
 
-  content_list = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs',
-  'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar',
-  'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
 
   errorMesage = '';
   cur_time = 0;

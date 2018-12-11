@@ -41,20 +41,19 @@
           <h4 class="my-0 font-weight-normal">{{content.name| uppercase}}</h4>
         </div>
         <div class="card-body">
-          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" >
+          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
             <ngb-panel *ngFor="let section of content.sections" (click)="panelClicked($event)">
-                <app-modal-help-content [section]="section"></app-modal-help-content>
-               <ng-template ngbPanelTitle>
+              <app-modal-help-content [section]="section"></app-modal-help-content>
+              <ng-template ngbPanelTitle>
 
                 <span>{{section.name}}</span>
               </ng-template>
               <ng-template ngbPanelContent>
-                  <app-modal-help-content [section]="section"></app-modal-help-content>
+                <app-modal-help-content [section]="section"></app-modal-help-content>
 
               </ng-template>
             </ngb-panel>
           </ngb-accordion>
-
         </div>
       </div>
 
