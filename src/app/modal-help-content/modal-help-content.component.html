@@ -1,20 +1,18 @@
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <h4 class="modal-title" id="modal-basic-title">{{topic}} {{section.name}} </h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
         <div class="row">
-            <div class="col-3">
-              <h2>Audio Controls</h2>
+            <div class="col">
               <audio [src]="section.uri_mp3" controls="true" [playbackRate]="playback_rate" [currentTime]='cur_time'
                 [attr.data-marks]='section.uri_marks' (play)='onplay($event)' (canplay)='oncanplay($event)'
                 (timeupdate)="onTimeUpdate($event)"></audio>
             </div>
-            <div class="col-9">
-              <h2>Playback speed</h2>
+            <div class="col">
               <input name="playback" type="range" min="0.1" max="4.0" step="0.10" [(ngModel)]="playback_rate">
               <label for="playback"> {{playback_rate}}</label>
             </div>
@@ -25,12 +23,12 @@
           </div>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Done</button>
     </div>
   </ng-template>
 
-  <button class="btn btn-lg btn-outline-primary" (click)="open(content)">{{section.name}}</button>
+  <button class="btn btn-lg btn-outline-primary btn-block text-truncate" (click)="open(content)">{{section.name}}</button>
 
   <hr>
 
-  <pre>{{closeResult}}</pre>
+  <!-- <pre>{{closeResult}}</pre> -->

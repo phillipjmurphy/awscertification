@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { FaqService } from '../faq.service';
+import { toPublicName } from '@angular/compiler/src/i18n/serializers/xmb';
 @Component({
   selector: 'app-modal-help-content',
   templateUrl: './modal-help-content.component.html',
@@ -8,6 +9,7 @@ import { FaqService } from '../faq.service';
 })
 export class ModalHelpContentComponent implements OnInit {
   @Input() section;
+  @Input() topic;
   closeResult: string;
   errorMesage = '';
   playback_rate = 2;
