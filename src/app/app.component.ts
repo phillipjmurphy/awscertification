@@ -14,9 +14,10 @@ export class AppComponent implements OnInit {
   playback_rate = 2;
 
   aws_content = [];
-  faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs','dynamodb','lambda','api-gateway','elasticbeanstalk','kinesis','kms',
-  'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar',
-  'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
+  faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs', 'dynamodb', 'lambda'
+              , 'api-gateway', 'elasticbeanstalk', 'kinesis', 'kms', 'iam', 'elasticache'
+              , 'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar'
+              , 'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
 
 
   errorMesage = '';
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // For faq in FAQs
     //
-    for ( const faq of this.faqList) {
+    for (const faq of this.faqList) {
       this.faq_service.getFaq(faq).subscribe(
         faqRes => this.aws_content.push(faqRes),
         error => this.errorMesage = <any>error
