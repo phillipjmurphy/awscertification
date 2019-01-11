@@ -11,13 +11,13 @@ export class AppComponent implements OnInit {
 
   title = 'AWS-Audio-FAQ';
   another_variable = 'What is this and why ? ';
-  playback_rate = 2;
+  playback_rate = 2.5;
 
   aws_content = [];
-  faqList = ['ec2', 's3', 'vpc', 'route53', 'rds', 'sqs', 'dynamodb', 'lambda'
+  faqList = ['amazon-principles', 'ec2', 's3', 'vpc', 'route53', 'rds', 'sqs', 'dynamodb', 'lambda'
               , 'api-gateway', 'elasticbeanstalk', 'kinesis', 'kms', 'iam', 'elasticache'
               , 'AWS_Well_Architected_Framework', 'AWS_Operational_Excellence_Pillar', 'AWS_Security_Pillar'
-              , 'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];  // 'rds','sqs'
+              , 'AWS_Reliability_Pillar', 'AWS_Performance_Efficiency_Pillar', 'AWS_Cost_Optimization_Pillar'];
 
 
   errorMesage = '';
@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
       );
 
     }
-
+    this.aws_content.sort();
   }
 
   constructor(private faq_service: FaqService) {

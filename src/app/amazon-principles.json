@@ -1,0 +1,16 @@
+{
+    "url": "https://www.amazon.jobs/en/principles",
+    "name": "Amazon Principles",
+    "sections": [
+        {
+            "name": "Amazon Principles",
+            "uri_mp3": "https://s3.us-east-1.amazonaws.com/murphpolly/aws-principles.4af51914-7486-4546-b02f-f31265567559.mp3",
+            "uri_marks": "https://s3.us-east-1.amazonaws.com/murphpolly/aws-principles.31498492-deb7-4024-ba9e-b8999852b9ce.marks"
+        },
+        {
+            "name": "Amazon Principles Bare",
+            "uri_mp3": "https://s3.us-east-1.amazonaws.com/murphpolly/aws-principles.3bb2372c-407a-4407-90fa-e4389598d612.mp3",
+            "uri_marks": "https://s3.us-east-1.amazonaws.com/murphpolly/aws-principles.cced07d9-4649-4a62-a82f-a73d4eac2fdb.marks"
+        }
+    ]
+}
