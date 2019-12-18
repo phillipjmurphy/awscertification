@@ -54,9 +54,10 @@ export class AppComponent implements OnInit {
     const sentences = this.marks_sentence.filter(x => curTime >= x.time);
     this.currentSentence = sentences[sentences.length - 1].value;
     this.currentSentenceTime = sentences[sentences.length - 1].time;
-    // Should do this... but can't figure out a way that would work
-    document.getElementById(sentences[sentences.length - 1].time)
-      .scrollIntoView({ behavior: 'instant', block: 'center', inline: 'center' });
+    // TODO: Issue with setting the scroll once the updates happened. 
+	// // Should do this... but can't figure out a way that would work
+    // document.getElementById(sentences[sentences.length - 1].time)
+    //   .scrollIntoView({ behavior: 'instant', block: 'center', inline: 'center' });
 
   }
   setCurrentWord(time) {
