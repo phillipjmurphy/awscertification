@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalHelpContentComponent } from './modal-help-content/modal-help-content.component';
+import { AdsenseModule } from 'ng2-adsense';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +15,11 @@ import { ModalHelpContentComponent } from './modal-help-content/modal-help-conte
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+	NgbModule,
+	AdsenseModule.forRoot({
+		adClient: 'ca-pub-1665609390198428',
+		adSlot: 1234567,
+	  })
   ],
   providers: [],
   bootstrap: [AppComponent]
